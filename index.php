@@ -1,3 +1,54 @@
+<?php
+
+function genieAnswer()
+{
+    if($_POST["submit"] || !empty($_POST["question"])) {
+        $question = $_POST['question'];
+
+    $answers = array(
+        "It is certain",
+        "It is decidedly so",
+        "Without a doubt",
+        "Yes, definitely",
+        "You may rely on it",
+        "As I see it, yes",
+        "Most likely",
+        "Outlook good",
+        "Signs point to yes",
+        "Yes",
+        "Reply hazy, try again",
+        "Ask again later",
+        "Better not tell you now",
+        "Cannot predict now",
+        "Concentrate and ask again",
+        "Don't bet on it",
+        "My reply is no",
+        "My sources say no",
+        "Outlook not so good",
+        "Very doubtful"
+    );
+        
+        if ($_POST['question']) {
+            
+                $answerIndex = array_rand($answers,1); 
+                $genieAnswer = $answers[$answerIndex];           
+    
+        
+        }else{
+            $genieAnswer = "You must ask me a question you cunt!";
+        }
+
+        echo "<div class='alert alert-success' role='alert'>
+        <h4 class='alert-heading'>The Genie Says...</h4>
+        <p>" . $genieAnswer . "</p>
+        <hr>
+        <p class='mb-0'>- The Genie</p>
+        </div>";
+        
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,9 +94,9 @@
                         </button>
                         <?php
                         echo $questionErr; ?></div><?php
+                                                }
                                             }
-                                        }
-                                                ?>
+                                                    ?>
             <form action="index.php" method="post">
                 <div class="form-group">
                     <label for="body">What would you like to ask?</label>
@@ -55,20 +106,7 @@
             </form>
         </div>
         <div class="mt-5">
-
-            <?php
-            if ($_POST["submit"]) {
-                if (!empty($_POST['question'])) {
-
-                    echo "<div class='alert alert-success' role='alert'>
-                <h4 class='alert-heading'>Hmmm Let Me Think!</h4>
-                <p>Your chances look good!</p>
-                <hr>
-                <p class='mb-0'>- The Genie</p>
-                </div>";
-                }
-            }
-            ?>
+            <?php genieAnswer(); ?>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
